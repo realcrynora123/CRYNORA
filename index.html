@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Crynora. Premium freeze dried fruit made with hybrid heat pump and freeze drying. Delhi, India.">
+<title>Crynora</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Figtree:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: dark, premium, Apple-like pacing. Centered hero with the brand emblem and the full pouch lineup, then left-aligned bands. Gold is the only accent; each fruit's own colour appears only as a glow behind its pouch. Five views switched by hash. */
+:root{
+  --bg:#0a3626; --surface:#0f4331; --surface-2:#165039; --fg:#f6f0e2; --muted:#acc4b6; --line:#1f5a43; --line-strong:#3f7d63;
+  --gold:#d4af37; --gold-soft:#e8d28f; --gold-ink:#17120a;
+  --green:#062b1d; --green-line:#1f5a43; --green-muted:#9fc0ae; --nav-bg:rgba(10,54,38,.86);
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --font:"Figtree",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --mono:"DM Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--nav-bg)}
+a{color:inherit}
+h1,h2,h3,h4,p,figure{margin:0}
+h1,h2,h3{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;line-height:1.05;text-wrap:balance}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:6px}
+img{display:block}
+.wrap{max-width:1120px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band{padding-block:clamp(56px,9vw,112px)}
+.band-green{background:var(--green)}
+.band-surface{background:var(--surface)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.lead{font-size:clamp(18px,2.2vw,21px);color:var(--muted);line-height:1.5;max-width:36em}
+.band-green .lead{color:var(--green-muted)}
+.h-xl{font-size:clamp(46px,9vw,100px);line-height:.98}
+.h-lg{font-size:clamp(34px,5.4vw,58px)}
+.h-md{font-size:clamp(26px,3.2vw,36px)}
+.stack{display:flex;flex-direction:column;gap:18px}
+.center{align-items:center;text-align:center}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--nav-bg);-webkit-backdrop-filter:saturate(160%) blur(18px);backdrop-filter:saturate(160%) blur(18px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:8px 26px;flex-wrap:wrap;padding-block:9px}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto;text-decoration:none;font-family:var(--serif);font-weight:600;font-size:23px;letter-spacing:.2em;color:var(--gold-soft)}
+.brand img{width:36px;height:36px;object-fit:contain}
+.links{display:flex;gap:4px;overflow-x:auto;min-width:0}
+.links a{font-size:14px;text-decoration:none;color:var(--muted);padding:6px 13px;border-radius:999px;white-space:nowrap}
+.links a:hover{color:var(--fg)}
+.links a[aria-current="page"]{color:var(--gold-soft);background:var(--surface-2)}
+.cartlink{font-size:14px;font-weight:600;text-decoration:none;padding:7px 16px;border-radius:999px;background:var(--gold);color:var(--gold-ink);white-space:nowrap}
+@media (max-width:640px){.links{order:3;width:100%}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:600;font-size:16px;padding:13px 28px;border-radius:999px;border:1px solid transparent;background:var(--gold);color:var(--gold-ink);text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--line-strong)}
+.btn.ghost:hover{border-color:var(--gold);color:var(--gold-soft)}
+.btn.sm{font-size:14px;padding:9px 20px}
+.btnrow{display:flex;gap:12px;flex-wrap:wrap}
+.center .btnrow{justify-content:center}
+.textlink{color:var(--gold-soft);font-weight:600;text-decoration:none}
+.textlink:hover{text-decoration:underline}
+
+/* hero */
+.hero{padding-top:clamp(40px,7vw,88px);padding-bottom:clamp(40px,6vw,72px)}
+.emblem{width:clamp(84px,12vw,120px);height:auto}
+.lineup{margin-top:clamp(28px,5vw,56px);width:100%;border-radius:28px;border:1px solid var(--line);box-shadow:0 40px 90px -40px rgba(212,175,55,.28);aspect-ratio:1376/768;object-fit:cover;max-width:100%}
+
+/* promise */
+.promise{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.promise div{padding:32px 24px 32px 0}
+.promise b{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(30px,4vw,42px);line-height:1.05;color:var(--gold-soft);margin-bottom:6px}
+.promise span{color:var(--muted);font-size:15px}
+@media (min-width:900px){.promise div{padding-left:24px;border-left:1px solid var(--line)}.promise div:first-child{border-left:0;padding-left:0}}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;min-width:0;text-decoration:none}
+.card:hover{border-color:var(--line-strong)}
+.card img{width:100%;aspect-ratio:608/768;object-fit:cover}
+.card .meta{padding:18px 20px 22px;display:flex;flex-direction:column;gap:4px}
+.card h3{font-size:28px}
+.card p{color:var(--muted);font-size:15px}
+.card .row{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:10px}
+.price{font-family:var(--mono);font-size:14px;color:var(--gold-soft);font-variant-numeric:tabular-nums}
+
+/* tech flow */
+.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:34px 22px;counter-reset:s}
+.flow li{position:relative;padding-top:24px;border-top:2px solid var(--green-line);counter-increment:s}
+.flow li::before{content:counter(s,decimal-leading-zero);position:absolute;top:-1px;left:0;transform:translateY(-100%);font-family:var(--mono);font-size:12px;color:var(--gold);padding-bottom:8px}
+.flow li.hot{border-top-color:var(--gold)}
+.flow h4{font-family:var(--serif);font-size:24px;font-weight:500;margin-bottom:6px}
+.flow p{font-size:15px;color:var(--green-muted)}
+
+/* videos */
+.films{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px}
+.film video{width:100%;aspect-ratio:16/9;border-radius:20px;background:#000;border:1px solid var(--line);display:block;object-fit:cover}
+.film figcaption{margin-top:10px;font-size:15px;color:var(--muted)}
+
+/* product rows */
+.prow{display:grid;grid-template-columns:1fr;gap:32px 64px;align-items:center;padding-block:56px;border-top:1px solid var(--line)}
+.prow:first-of-type{border-top:0}
+.prow .tile img{width:100%;max-width:440px;aspect-ratio:608/768;object-fit:cover;border-radius:28px;margin-inline:auto;box-shadow:0 40px 100px -30px var(--tint,#000)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:13px;padding:6px 14px;border:1px solid var(--line-strong);border-radius:999px;color:var(--gold-soft)}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:10px 22px;margin-top:6px;font-size:15px}
+.facts dt{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.facts dd{margin:0}
+@media (min-width:780px){.prow{grid-template-columns:1fr 1fr}.prow:nth-of-type(even) .tile{order:2}}
+.more{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.more span{font-family:var(--serif);font-size:24px;padding:6px 18px;border:1px solid var(--line);border-radius:999px;color:var(--fg)}
+
+/* technology */
+.methods{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:20px}
+.method{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:clamp(24px,4vw,40px);display:flex;flex-direction:column;gap:14px;min-width:0}
+.method p{color:var(--muted)}
+.method .range{font-family:var(--mono);font-size:13px;color:var(--gold-soft);border-top:1px solid var(--line);padding-top:14px;margin-top:auto}
+.scroller{overflow-x:auto;border:1px solid var(--line);border-radius:20px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:15px}
+th,td{text-align:left;padding:16px 20px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+thead th{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+th.us,td.us{background:var(--surface-2);font-weight:600;color:var(--gold-soft)}
+td:first-child{color:var(--muted)}
+
+/* shop */
+.shop{display:grid;grid-template-columns:1fr;gap:40px;align-items:start}
+@media (min-width:900px){.shop{grid-template-columns:minmax(0,1fr) 380px}}
+.item{display:grid;grid-template-columns:72px minmax(0,1fr);gap:4px 18px;align-items:center;padding-block:20px;border-bottom:1px solid var(--line)}
+.item img{width:72px;height:91px;object-fit:cover;border-radius:12px;grid-row:span 2}
+.item h3{font-size:26px}
+.item .sub{color:var(--muted);font-size:15px}
+.item .buy{grid-column:1/-1;display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:8px}
+@media (min-width:560px){.item{grid-template-columns:72px minmax(0,1fr) auto}.item .buy{grid-column:auto;grid-row:span 2;margin:0;justify-content:flex-end}}
+select,input,textarea{font:inherit;font-size:16px;color:var(--fg);background:var(--bg);border:1px solid var(--line-strong);border-radius:12px;padding:11px 14px;width:100%;min-width:0}
+textarea{resize:vertical;min-height:84px}
+label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.field{margin-bottom:14px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:28px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px)}
+@media (max-width:899px){.panel{position:static}}
+.line{display:flex;justify-content:space-between;gap:12px;align-items:center;padding-block:10px;border-bottom:1px solid var(--line);font-size:15px}
+.line .qty{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:14px}
+.qty button{width:26px;height:26px;border-radius:50%;border:1px solid var(--line-strong);background:var(--bg);color:var(--fg);font:inherit;cursor:pointer;line-height:1}
+.total{display:flex;justify-content:space-between;font-weight:700;font-size:20px;padding-block:16px;font-variant-numeric:tabular-nums}
+.empty{color:var(--muted);font-size:15px;padding-block:12px}
+.msg{font-size:14px;min-height:1.4em;margin-top:10px;color:var(--gold-soft)}
+.receipt{margin-top:18px;display:flex;flex-direction:column;gap:12px}
+.receipt textarea{font-family:var(--mono);font-size:13px;min-height:200px}
+.note{font-size:13px;color:var(--muted)}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1fr;gap:48px}
+@media (min-width:860px){.contact{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.detail{padding-block:18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;align-items:flex-end}
+.detail span{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.detail b{font-family:var(--serif);font-size:28px;font-weight:500;word-break:break-word;line-height:1.15}
+
+footer{border-top:1px solid var(--line);padding-block:40px 52px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;gap:20px 40px;flex-wrap:wrap;justify-content:space-between;align-items:center}
+footer .fb{display:flex;align-items:center;gap:14px}
+footer .fb img{width:56px;height:56px;object-fit:contain}
+footer nav{display:flex;gap:18px;flex-wrap:wrap}
+footer a{text-decoration:none}
+footer a:hover{color:var(--fg)}
+/* why it's good for you */
+.why{border-top:1px solid var(--line);padding-top:18px;margin-top:6px}
+.why h3{font-size:28px;margin-bottom:8px}
+.why p{color:var(--muted);font-size:15.5px}
+.why ul{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.why li{padding-left:22px;position:relative;font-size:15px}
+.why li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+
+/* eat well page */
+.reasons{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:20px}
+.reason{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.reason h3{font-size:28px}
+.reason p{color:var(--muted);font-size:15.5px}
+.targets{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.targets div{padding:30px 24px 30px 0}
+.targets b{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(44px,7vw,72px);line-height:1;color:var(--gold-soft)}
+.targets span{display:block;margin-top:8px;color:var(--muted);font-size:15.5px;max-width:28em}
+@media (min-width:700px){.targets div+div{padding-left:28px;border-left:1px solid var(--line)}}
+.plategrid{display:grid;grid-template-columns:1fr;gap:36px 64px;align-items:center}
+@media (min-width:780px){.plategrid{grid-template-columns:minmax(0,360px) minmax(0,1fr)}}
+.plate{width:min(100%,340px);aspect-ratio:1;border-radius:50%;margin-inline:auto;position:relative;background:conic-gradient(#5fae7a 0 50%,var(--gold) 50% 75%,#b3433a 75% 100%);box-shadow:0 30px 80px -30px rgba(0,0,0,.7)}
+.plate::after{content:"";position:absolute;inset:30%;border-radius:50%;background:var(--bg);border:1px solid var(--line)}
+.legend{list-style:none;margin:0;padding:0;display:grid;gap:18px}
+.legend li{display:grid;grid-template-columns:18px 1fr;gap:4px 14px}
+.legend i{width:18px;height:18px;border-radius:50%;margin-top:6px;display:block}
+.legend b{font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.15}
+.legend span{grid-column:2;color:var(--muted);font-size:15.5px}
+.tips{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px 40px}
+.tips li{padding-left:28px;position:relative}
+.tips li::before{content:"";position:absolute;left:0;top:.5em;width:14px;height:8px;border-left:2px solid var(--gold);border-bottom:2px solid var(--gold);transform:rotate(-45deg)}
+.tips b{display:block;font-weight:600;margin-bottom:2px}
+.tips span{color:var(--muted);font-size:15.5px}
+.ideas{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:18px}
+.idea{border:1px solid var(--line);border-radius:22px;padding:24px;background:var(--bg);display:flex;flex-direction:column;gap:8px;min-width:0}
+.idea .eyebrow{font-size:11px}
+.idea h3{font-size:26px}
+.idea p{color:var(--muted);font-size:15.5px}
+.disclaimer{font-size:14px;color:var(--muted);border-left:2px solid var(--gold);padding-left:16px;max-width:46em}
+.srcs{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:14px}
+.srcs a{color:var(--gold-soft)}
+.callout{margin-top:18px;padding:18px 22px;border:1px solid var(--line);border-radius:18px;background:var(--surface);color:var(--muted);font-size:15.5px;max-width:46em}
+.callout a{color:var(--gold-soft)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#home"><img src="img/logo.png" alt="" width="36" height="36">CRYNORA</a>
+    <nav class="links" aria-label="Main">
+      <a href="#home" data-nav="home">Home</a>
+      <a href="#products" data-nav="products">Products</a>
+      <a href="#technology" data-nav="technology">Technology</a>
+      <a href="#eat" data-nav="eat">Eat well</a>
+      <a href="#shop" data-nav="shop">Shop</a>
+      <a href="#contact" data-nav="contact">Contact</a>
+    </nav>
+    <a class="cartlink" href="#shop" id="navcart">Bag (0)</a>
+  </div>
+</header>
+
+<main>
+<!-- HOME -->
+<section data-page="home">
+  <div class="band hero">
+    <div class="wrap stack center">
+      <img class="emblem" src="img/logo.png" alt="Crynora. Nurture preserved perfectly." width="120" height="131">
+      <p class="eyebrow">Hybrid heat pump + freeze dried</p>
+      <h1 class="h-xl">Fruit, kept<br><em>exactly</em> as it was.</h1>
+      <p class="lead">Premium dried fruit, made with gentle heat pump drying followed by freeze drying. Crisp texture, true colour and nothing added.</p>
+      <div class="btnrow" style="margin-top:6px">
+        <a class="btn" href="#shop">Shop now</a>
+        <a class="btn ghost" href="#technology">See how it's made</a>
+      </div>
+      <img class="lineup" src="img/lineup.jpg" alt="The Crynora range of dried fruit pouches: blueberry, strawberry, raspberry, blackberry, cranberry, mango, pineapple, papaya, dragon fruit and guava." width="1376" height="768">
+    </div>
+  </div>
+
+  <div class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="promise">
+        <div><b>100% natural</b><span>Just fruit, nothing else in the pouch.</span></div>
+        <div><b>No added sugar</b><span>The sweetness is the fruit's own.</span></div>
+        <div><b>No preservatives</b><span>Drying and sealing do the work.</span></div>
+        <div><b>9 months</b><span>Shelf life when stored cool and dry.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band band-green">
+    <div class="wrap stack">
+      <p class="eyebrow">The technology</p>
+      <h2 class="h-lg" style="max-width:14em">Most of the water leaves before the fruit ever gets hot.</h2>
+      <p class="lead">Our hybrid process pairs a heat pump dryer with a freeze dryer. Each does the part it is best at.</p>
+      <ol class="flow" style="margin-top:40px">
+        <li><h4>Slice</h4><p>Ripe fruit is washed and cut to an even thickness.</p></li>
+        <li class="hot"><h4>Heat pump drying</h4><p>Warm, dehumidified air removes the bulk of the water.</p></li>
+        <li><h4>Freeze</h4><p>Fruit is frozen solid to lock in structure.</p></li>
+        <li class="hot"><h4>Freeze drying</h4><p>Under vacuum, ice turns straight to vapour.</p></li>
+      </ol>
+      <div class="btnrow" style="margin-top:28px"><a class="btn ghost" href="#technology">Explore the technology</a></div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap stack">
+      <p class="eyebrow">The range</p>
+      <h2 class="h-lg">Seven fruits to start with.</h2>
+      <div class="cards" id="homecards" style="margin-top:24px"></div>
+      <div style="margin-top:12px"><a class="textlink" href="#products">See every product &rsaquo;</a></div>
+    </div>
+  </div>
+
+  <div class="band band-green">
+    <div class="wrap stack">
+      <p class="eyebrow">Eat well</p>
+      <h2 class="h-lg" style="max-width:14em">Why healthy eating matters, and how fruit helps.</h2>
+      <p class="lead">Fibre, vitamins and antioxidants, daily fruit targets from the WHO and India's NIN, a balanced plate and easy snack ideas.</p>
+      <div class="btnrow" style="margin-top:12px"><a class="btn" href="#eat">Read the guide</a></div>
+    </div>
+  </div>
+
+  <div class="band band-surface">
+    <div class="wrap stack">
+      <p class="eyebrow">Watch</p>
+      <h2 class="h-lg">Crynora in motion.</h2>
+      <div class="films" id="films" style="margin-top:24px"></div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap stack center">
+      <h2 class="h-lg">Taste the difference.</h2>
+      <p class="lead">Order a pouch and find out what properly dried fruit is like.</p>
+      <div class="btnrow"><a class="btn" href="#shop">Shop now</a><a class="btn ghost" href="#contact">Talk to us</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section data-page="products" hidden>
+  <div class="band" style="padding-bottom:16px">
+    <div class="wrap stack">
+      <p class="eyebrow">Products</p>
+      <h1 class="h-xl" style="font-size:clamp(42px,7.4vw,84px);max-width:11em">Real fruit. Nothing added.</h1>
+      <p class="lead">Every 50 g pouch holds a single fruit, dried with our hybrid heat pump and freeze drying process and sealed with a resealable zip.</p>
+    </div>
+  </div>
+  <div class="wrap" id="prows"></div>
+  <div class="band band-surface">
+    <div class="wrap stack">
+      <p class="eyebrow">Also in the Crynora range</p>
+      <h2 class="h-md">More flavours</h2>
+      <div class="more"><span>Blueberry</span><span>Raspberry</span><span>Blackberry</span><span>Cranberry</span><span>Papaya</span><span>Guava</span></div>
+      <p class="lead" style="margin-top:6px">Ask us about availability and bulk orders.</p>
+      <div class="btnrow" style="margin-top:8px"><a class="btn" href="#contact">Contact us</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGY -->
+<section data-page="technology" hidden>
+  <div class="band" style="padding-bottom:24px">
+    <div class="wrap stack">
+      <p class="eyebrow">Our technology</p>
+      <h1 class="h-xl" style="font-size:clamp(42px,7.4vw,84px);max-width:11em">Two ways to dry. One better fruit.</h1>
+      <p class="lead">Freeze drying gives the best quality but uses a lot of energy and time. Heat pump drying is efficient but can only go so far on its own. We use both, in order.</p>
+    </div>
+  </div>
+
+  <div class="band" style="padding-top:24px">
+    <div class="wrap methods">
+      <div class="method">
+        <p class="eyebrow">Stage one</p>
+        <h2 class="h-md">Heat pump drying</h2>
+        <p>Air is warmed and dried in a closed loop. The heat pump cools the moist air to condense out the water, then reuses that heat to warm the air again. The fruit never meets the high temperatures of a conventional hot-air dryer, and very little energy is wasted.</p>
+        <p class="range">Typical range: 30 to 50 &deg;C, low humidity air</p>
+      </div>
+      <div class="method">
+        <p class="eyebrow">Stage two</p>
+        <h2 class="h-md">Freeze drying</h2>
+        <p>The fruit is frozen, then placed under deep vacuum. Remaining water goes from ice straight to vapour, a step called sublimation. Because it never turns to liquid, the cell structure holds and the piece stays light and crisp.</p>
+        <p class="range">Typical range: below &minus;30 &deg;C, under vacuum</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="band band-green">
+    <div class="wrap stack">
+      <p class="eyebrow">The process</p>
+      <h2 class="h-lg" style="max-width:14em">From ripe fruit to sealed pouch.</h2>
+      <ol class="flow" style="margin-top:44px">
+        <li><h4>Select and slice</h4><p>Ripe fruit is washed, peeled where needed and cut to an even thickness so every piece dries at the same rate.</p></li>
+        <li class="hot"><h4>Heat pump pre-drying</h4><p>Most of the water is removed in warm, dry air at low temperature.</p></li>
+        <li><h4>Freezing</h4><p>Pre-dried pieces are frozen solid, fixing their shape.</p></li>
+        <li class="hot"><h4>Freeze drying</h4><p>Vacuum sublimation removes the last of the water, leaving a light and crisp piece.</p></li>
+        <li><h4>Sealed fresh</h4><p>Pouches are sealed straight away so moisture cannot get back in.</p></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap stack">
+      <p class="eyebrow">Why hybrid</p>
+      <h2 class="h-lg" style="max-width:14em">Quality of freeze drying. Less energy than freeze drying alone.</h2>
+      <div class="scroller" style="margin-top:28px">
+        <table>
+          <thead><tr><th></th><th>Hot-air drying</th><th>Freeze drying only</th><th class="us">Crynora hybrid</th></tr></thead>
+          <tbody>
+            <tr><td>Temperature</td><td>Warm to hot air</td><td>Frozen, under vacuum</td><td class="us">Low heat, then frozen</td></tr>
+            <tr><td>Texture</td><td>Chewy, shrunken</td><td>Light and crisp</td><td class="us">Light and crisp</td></tr>
+            <tr><td>Colour</td><td>Often darkens</td><td>Close to fresh</td><td class="us">Close to fresh</td></tr>
+            <tr><td>Aroma and flavour</td><td>Partly lost to heat</td><td>Well kept</td><td class="us">Well kept</td></tr>
+            <tr><td>Energy and time</td><td>Moderate</td><td>Highest, long cycles</td><td class="us">Lower than freeze drying alone</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="callout">Why this matters for nutrition: in a 2021 comparison of strawberries, raspberries and blackberries, freeze drying kept more vitamin C than air drying at 60 &deg;C. <a href="https://agris.fao.org/search/zh/records/6474814f79cbb2c2c1b92233" target="_blank" rel="noopener">Read the record</a></p>
+      <div style="margin-top:28px"><a class="btn" href="#shop">Try the result</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- EAT WELL -->
+<section data-page="eat" hidden>
+  <div class="band" style="padding-bottom:24px">
+    <div class="wrap stack">
+      <p class="eyebrow">Eat well</p>
+      <h1 class="h-xl" style="font-size:clamp(42px,7.4vw,84px);max-width:11em">Good food is a daily habit.</h1>
+      <p class="lead">Small, steady choices add up. Here is why healthy eating matters, how much fruit to aim for, and where a pouch of Crynora fits in.</p>
+    </div>
+  </div>
+
+  <div class="band" style="padding-top:32px">
+    <div class="wrap stack">
+      <p class="eyebrow">Why it matters</p>
+      <h2 class="h-lg" style="max-width:13em">What a healthy diet does for you.</h2>
+      <div class="reasons" style="margin-top:24px">
+        <div class="reason"><h3>Steady energy</h3><p>Fibre slows how quickly your body absorbs carbohydrates, so meals built on whole foods keep you going longer than sugary snacks.</p></div>
+        <div class="reason"><h3>A happier gut</h3><p>Fibre from fruit, vegetables, grains and pulses supports regular digestion and helps you feel full for longer.</p></div>
+        <div class="reason"><h3>Vitamins and antioxidants</h3><p>Fruit supplies vitamin C and carotenoids. Vitamin C helps you absorb iron from plant foods, and antioxidants help counter everyday cell damage.</p></div>
+        <div class="reason"><h3>Protection for the long run</h3><p>The WHO lists low fruit and vegetable intake among the leading risk factors for death worldwide. Eating more of them is part of lowering the burden of chronic disease.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band band-surface">
+    <div class="wrap stack">
+      <p class="eyebrow">How much</p>
+      <h2 class="h-lg" style="max-width:13em">Daily fruit and vegetable targets.</h2>
+      <div class="targets" style="margin-top:24px">
+        <div><b>400 g</b><span>The WHO's daily target for fruit and vegetables together, roughly five portions.</span></div>
+        <div><b>300 g + 100 g</b><span>India's NIN dietary guidelines suggest at least 300 g of vegetables and about 100 g of fresh fruit a day.</span></div>
+      </div>
+      <p class="callout">These targets are for fresh produce. Dried fruit is concentrated, so treat a 50 g Crynora pouch as a snack that sits alongside fresh fruit and vegetables, not in place of them.</p>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap plategrid">
+      <div class="plate" role="img" aria-label="A plate divided into half vegetables and fruit, a quarter whole grains and a quarter protein"></div>
+      <div class="stack">
+        <p class="eyebrow">Build a balanced plate</p>
+        <h2 class="h-lg">Half fruit and vegetables.</h2>
+        <ul class="legend">
+          <li><i style="background:#5fae7a"></i><b>Vegetables and fruit, about half</b><span>Mix colours and include leafy greens. Fresh fruit comes first, dried fruit is a bonus.</span></li>
+          <li><i style="background:var(--gold)"></i><b>Whole grains, about a quarter</b><span>Roti, brown rice, oats and millets.</span></li>
+          <li><i style="background:#b3433a"></i><b>Protein, about a quarter</b><span>Dal, beans, paneer, eggs, fish or chicken.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="band band-green">
+    <div class="wrap stack">
+      <p class="eyebrow">Smart snacking</p>
+      <h2 class="h-lg" style="max-width:13em">Five habits for better snacks.</h2>
+      <ul class="tips" style="margin-top:28px">
+        <li><b>Read the ingredient list.</b><span>Ingredients are listed by quantity, so a short list is a good sign.</span></li>
+        <li><b>Look for added sugar.</b><span>Sugar, jaggery, honey and glucose syrup added in processing bring calories without nutrients.</span></li>
+        <li><b>Choose whole foods.</b><span>Ultra-processed snacks lose much of their fibre and micronutrients, so keep them occasional.</span></li>
+        <li><b>Mind the portion.</b><span>Dried fruit is concentrated, so a small handful goes a long way.</span></li>
+        <li><b>Pair it up.</b><span>Add curd, nuts or seeds to a fruit snack to feel full for longer.</span></li>
+      </ul>
+      <p class="lead" style="margin-top:16px">Crynora has one ingredient on the label: fruit. No added sugar and no preservatives.</p>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap stack">
+      <p class="eyebrow">Ideas</p>
+      <h2 class="h-lg">Easy ways to enjoy Crynora.</h2>
+      <div class="ideas" style="margin-top:24px">
+        <div class="idea"><span class="eyebrow">Breakfast</span><h3>Fruity oats</h3><p>Stir strawberry or apple into warm oats or overnight oats.</p></div>
+        <div class="idea"><span class="eyebrow">Bowl</span><h3>Curd and mango</h3><p>Top plain curd with mango and pineapple pieces and a spoon of seeds.</p></div>
+        <div class="idea"><span class="eyebrow">Smoothie</span><h3>Pink topper</h3><p>Crumble red dragon fruit over a banana or berry smoothie.</p></div>
+        <div class="idea"><span class="eyebrow">Lunchbox</span><h3>Crunchy swap</h3><p>Pack a handful of apple chips in place of packaged biscuits.</p></div>
+        <div class="idea"><span class="eyebrow">Tea time</span><h3>Berry infusion</h3><p>Drop a few buckthorn berries into hot water or tea.</p></div>
+        <div class="idea"><span class="eyebrow">Trail mix</span><h3>Fruit and nuts</h3><p>Mix any Crynora fruit with almonds, cashews and pumpkin seeds.</p></div>
+        <div class="idea"><span class="eyebrow">Dessert</span><h3>Litchi finish</h3><p>Scatter litchi over kulfi, fruit salad or yoghurt.</p></div>
+        <div class="idea"><span class="eyebrow">On the go</span><h3>Travel pouch</h3><p>A 50 g resealable pouch fits in a bag for trips and long workdays.</p></div>
+      </div>
+      <div class="btnrow" style="margin-top:28px"><a class="btn" href="#shop">Shop Crynora</a><a class="btn ghost" href="#products">See what's in each fruit</a></div>
+    </div>
+  </div>
+
+  <div class="band band-surface" style="padding-block:48px">
+    <div class="wrap stack">
+      <p class="disclaimer">This page gives general nutrition information and is not medical advice. If you have diabetes, an allergy or any other health condition, ask your doctor or dietitian how much dried fruit suits you. Nutrient levels vary with fruit variety, season and ripeness.</p>
+      <p class="eyebrow" style="margin-top:8px">Sources</p>
+      <ul class="srcs">
+        <li><a href="https://nin.res.in/downloads/DietaryGuidelinesforNINwebsite.pdf" target="_blank" rel="noopener">Dietary Guidelines for Indians, National Institute of Nutrition</a></li>
+        <li><a href="https://www.pmfias.com/icmrs-dietary-guidelines-for-indians/" target="_blank" rel="noopener">Summary of the ICMR-NIN dietary guidelines (fibre, added sugar, processed foods, plate model)</a></li>
+        <li><a href="https://www.fao.org/fileadmin/templates/agphome/documents/horticulture/WHO/Rome/WHO_fruits_vegetables.pdf" target="_blank" rel="noopener">WHO and FAO: promoting fruit and vegetable consumption</a></li>
+        <li><a href="https://agris.fao.org/search/zh/records/6474814f79cbb2c2c1b92233" target="_blank" rel="noopener">Freeze-drying of berries compared with air drying at 60 &deg;C (2021 conference paper)</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section data-page="shop" hidden>
+  <div class="band" style="padding-bottom:24px">
+    <div class="wrap stack">
+      <p class="eyebrow">Shop</p>
+      <h1 class="h-xl" style="font-size:clamp(42px,7.4vw,84px)">Choose your fruit.</h1>
+      <p class="lead">Each pouch is 50 g. Add what you like, then send your order to us on WhatsApp or by email. Prices shown are sample prices.</p>
+    </div>
+  </div>
+  <div class="wrap shop" style="padding-bottom:clamp(56px,9vw,112px)">
+    <div id="shoplist"></div>
+    <aside class="panel" aria-label="Your bag">
+      <h2 class="h-md" style="margin-bottom:12px">Your bag</h2>
+      <div id="cartlines"></div>
+      <div class="total"><span>Total</span><span id="carttotal">&#8377;0</span></div>
+      <div class="field"><label for="oname">Name</label><input id="oname" autocomplete="name"></div>
+      <div class="field"><label for="ophone">Phone</label><input id="ophone" type="tel" autocomplete="tel"></div>
+      <div class="field"><label for="oaddr">Delivery address</label><textarea id="oaddr" autocomplete="street-address"></textarea></div>
+      <button class="btn" style="width:100%" id="placeorder" type="button">Create order summary</button>
+      <p class="msg" id="ordermsg" role="status" aria-live="polite"></p>
+      <div class="receipt" id="receipt" hidden>
+        <textarea id="receipttext" readonly aria-label="Order summary"></textarea>
+        <div class="btnrow">
+          <a class="btn sm" id="wa-order" href="https://wa.me/918893825944" target="_blank" rel="noopener">Send on WhatsApp</a>
+          <button class="btn ghost sm" type="button" id="copyreceipt">Copy</button>
+        </div>
+        <p class="note">You can also email this summary to <b>real.crynora@gmail.com</b> or call <b>+91 8893825944</b>. We will confirm your order and arrange payment.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section data-page="contact" hidden>
+  <div class="band" style="padding-bottom:24px">
+    <div class="wrap stack">
+      <p class="eyebrow">Contact</p>
+      <h1 class="h-xl" style="font-size:clamp(42px,7.4vw,84px)">Let's talk fruit.</h1>
+      <p class="lead">Questions about our products, our process, gifting or bulk orders? Write to us.</p>
+    </div>
+  </div>
+  <div class="wrap contact" style="padding-bottom:clamp(56px,9vw,112px)">
+    <div>
+      <div class="detail"><div><span>Email</span><b>real.crynora@gmail.com</b></div><button class="btn ghost sm" type="button" data-copy="real.crynora@gmail.com">Copy</button></div>
+      <div class="detail"><div><span>Phone and WhatsApp</span><b>+91 8893825944</b></div><button class="btn ghost sm" type="button" data-copy="+91 8893825944">Copy</button></div>
+      <div class="detail"><div><span>Location</span><b>Delhi, India</b></div></div>
+      <div class="detail"><div><span>Bulk and gifting</span><b>Ask for a quote for cafes, hotels and corporate gifts.</b></div></div>
+    </div>
+    <div>
+      <h2 class="h-md" style="margin-bottom:18px">Send a message</h2>
+      <div class="field"><label for="cname">Name</label><input id="cname" autocomplete="name"></div>
+      <div class="field"><label for="cphone">Phone or email</label><input id="cphone"></div>
+      <div class="field"><label for="cmsg">Message</label><textarea id="cmsg"></textarea></div>
+      <button class="btn" type="button" id="makemsg">Create message</button>
+      <p class="msg" id="cmsgstatus" role="status" aria-live="polite"></p>
+      <div class="receipt" id="mreceipt" hidden>
+        <textarea id="mtext" readonly aria-label="Your message"></textarea>
+        <div class="btnrow">
+          <a class="btn sm" id="wa-msg" href="https://wa.me/918893825944" target="_blank" rel="noopener">Send on WhatsApp</a>
+          <button class="btn ghost sm" type="button" id="copymsg">Copy</button>
+        </div>
+        <p class="note">Or email it to <b>real.crynora@gmail.com</b>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fb"><img src="img/logo.png" alt="" width="56" height="56"><div>&copy; Crynora. Nurture preserved perfectly.<br>Delhi, India</div></div>
+    <nav aria-label="Footer"><a href="#products">Products</a><a href="#technology">Technology</a><a href="#eat">Eat well</a><a href="#shop">Shop</a><a href="#contact">Contact</a></nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var P = [
+    {id:'apple', name:'Apple', tag:'Crisp, bright and quietly sweet.', tint:'#b3141a', price:249, ben:['100% Natural','No Added Sugar','Rich in Fiber','Boosts Immunity'], ing:'Dried apple', enjoy:'Anytime snack, travel, tiffin, post workout.'},
+    {id:'litchi', name:'Litchi', tag:'Floral, fragrant and delicate.', tint:'#c9686f', price:349, ben:['100% Natural','No Added Sugar','Rich in Vitamin C','Goodness of Fiber'], ing:'Dried litchi', enjoy:'Snack, fruit platters, desserts.'},
+    {id:'strawberry', name:'Strawberry', tag:'Intense, tart and berry-bright.', tint:'#b4161b', price:349, ben:['100% Natural','No Added Sugar','Rich in Vitamin C','Good Source of Fiber'], ing:'Dried strawberry', enjoy:'Snack, smoothies, cakes and cereal.'},
+    {id:'mango', name:'Mango', tag:'Golden, rich and tropical.', tint:'#d89a1f', price:299, ben:['100% Natural','No Added Sugar','Rich in Vitamin A','Good Source of Fiber'], ing:'Dried mango', enjoy:'Snack, granola, ice cream topping.'},
+    {id:'pineapple', name:'Pineapple', tag:'Sunny, tangy and juicy-sweet.', tint:'#b79a1c', price:249, ben:['100% Natural','No Added Sugar','Rich in Vitamin C','Supports Digestion'], ing:'Dried pineapple', enjoy:'Straight from the pouch, in yoghurt, on desserts.'},
+    {id:'dragonfruit', name:'Red Dragon Fruit', tag:'Mild, floral and strikingly pink.', tint:'#b0185f', price:349, ben:['100% Natural','No Added Sugar','Rich in Antioxidants','High in Fiber'], ing:'Dried red dragon fruit', enjoy:'Topping for bowls, drinks and desserts.'},
+    {id:'buckthorn', name:'Buckthorn Berry', tag:'Tart, bright and full of vitamin C.', tint:'#c2481f', price:449, ben:['100% Natural','No Added Sugar','Rich in Vitamin C','Supports Immunity'], ing:'Dried buckthorn berry', enjoy:'Handful snack, tea, trail mix.'}
+  ];
+  var FILMS = [
+    {f:'apple', t:'Meet Crynora Apple.'},
+    {f:'mango', t:'Mango, fresh from the pouch.'},
+    {f:'dragon', t:'Red dragon fruit, one crisp piece at a time.'},
+    {f:'vines', t:'Nurture preserved perfectly.'}
+  ];
+  var WHY = {
+    apple:{p:'A crunchy, filling snack that gives you fibre without any added sugar.', l:['Dietary fibre, including pectin, supports digestion and helps you feel full','Natural plant compounds called polyphenols come with the fruit','A light swap for biscuits and fried snacks']},
+    litchi:{p:'Litchi is known for its vitamin C and a sweet, perfumed taste that needs no sugar.', l:['Vitamin C supports normal immune function and helps you absorb iron from plant foods','Natural plant polyphenols with antioxidant activity','Fibre to help keep you satisfied']},
+    strawberry:{p:'Berries are among the most nutrient-dense fruits, and they are also the most delicate to dry.', l:['Vitamin C, which freeze drying keeps better than hot-air drying','Anthocyanins, the red pigments that act as antioxidants','Fibre in every handful']},
+    mango:{p:'Mango brings the yellow-orange carotenoids that your body turns into vitamin A.', l:['Beta-carotene, which supports eyes, skin and immune function','Vitamin C and natural fruit sweetness','A good source of fibre']},
+    pineapple:{p:'Tangy and bright, pineapple is a classic source of vitamin C.', l:['Vitamin C supports immune function and iron absorption','Bromelain, an enzyme traditionally associated with easier digestion','Manganese, a trace mineral the body uses for energy and bone health']},
+    dragonfruit:{p:'Red dragon fruit gets its deep colour from betalains, plant pigments with antioxidant activity.', l:['Betalain pigments and other antioxidants','High in dietary fibre for digestive health','Low-temperature drying helps keep the vivid colour']},
+    buckthorn:{p:'Sea buckthorn berries are prized for their vitamin C and their orange carotenoids.', l:['Vitamin C supports normal immune function','Carotenoids and flavonoids, plant compounds with antioxidant activity','A tart, concentrated berry that works in tea and trail mix']}
+  };
+  var BY = {}; P.forEach(function(p){ BY[p.id] = p; });
+  function money(n){ return '₹' + n.toLocaleString('en-IN'); }
+  function $(s){ return document.querySelector(s); }
+  function $$(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); }
+  function img(p, alt){ return '<img src="img/p-'+p.id+'.jpg" alt="'+alt+'" width="608" height="768" loading="lazy">'; }
+
+  $('#homecards').innerHTML = P.map(function(p){
+    return '<a class="card" href="#shop">'+img(p, 'Crynora '+p.name+' pouch, 50 g')+'<div class="meta"><h3>'+p.name+'</h3><p>'+p.tag+'</p>' +
+      '<div class="row"><span class="price">'+money(p.price)+' &middot; 50 g</span><span class="textlink">Buy &rsaquo;</span></div></div></a>';
+  }).join('');
+
+  $('#films').innerHTML = FILMS.map(function(v){
+    return '<figure class="film"><video controls playsinline preload="metadata" poster="vid/'+v.f+'.jpg"><source src="vid/'+v.f+'.mp4" type="video/mp4"></video><figcaption>'+v.t+'</figcaption></figure>';
+  }).join('');
+
+  $('#prows').innerHTML = P.map(function(p){
+    return '<article class="prow"><div class="tile" style="--tint:'+p.tint+'55">'+img(p, 'Crynora '+p.name+' pouch, 50 g')+'</div>' +
+      '<div class="stack"><p class="eyebrow">Freeze dried &middot; heat pump pre-dried</p><h2 class="h-lg">'+p.name+'</h2><p class="lead">'+p.tag+'</p>' +
+      '<div class="chips">'+p.ben.map(function(b){ return '<span>'+b+'</span>'; }).join('')+'</div>' +
+      '<div class="why"><h3>Why it is good for you</h3><p>'+WHY[p.id].p+'</p><ul>'+WHY[p.id].l.map(function(x){ return '<li>'+x+'</li>'; }).join('')+'</ul></div>' +
+      '<dl class="facts"><dt>Net weight</dt><dd>50 g</dd><dt>Ingredients</dt><dd>'+p.ing+' (100%)</dd><dt>Shelf life</dt><dd>9 months</dd><dt>Storage</dt><dd>Store in a cool, dry place. Keep away from direct sunlight.</dd><dt>Enjoy</dt><dd>'+p.enjoy+'</dd></dl>' +
+      '<div class="btnrow" style="margin-top:12px">'+'<a class="btn" href="#shop">Add to bag &middot; '+money(p.price)+'</a></div><p class="note">General nutrition information, not medical advice.</p></div></article>';
+  }).join('');
+
+  $('#shoplist').innerHTML = P.map(function(p){
+    return '<div class="item"><img src="img/p-'+p.id+'.jpg" alt="Crynora '+p.name+' pouch" width="72" height="91" loading="lazy"><div><h3>'+p.name+'</h3><p class="sub">'+p.tag+' 50 g</p></div>' +
+      '<div class="buy"><span class="price">'+money(p.price)+'</span><button class="btn sm" type="button" data-add="'+p.id+'">Add to bag</button></div></div>';
+  }).join('');
+
+  var cart = [];
+  function renderCart(){
+    var html = '', total = 0, count = 0;
+    cart.forEach(function(c, i){
+      var p = BY[c.id], line = p.price * c.qty; total += line; count += c.qty;
+      html += '<div class="line"><span>'+p.name+' <span class="note">50 g</span></span>' +
+        '<span class="qty"><button type="button" data-dec="'+i+'" aria-label="Remove one">&minus;</button>'+c.qty+'<button type="button" data-inc="'+i+'" aria-label="Add one">+</button></span>' +
+        '<span class="price">'+money(line)+'</span></div>';
+    });
+    $('#cartlines').innerHTML = html || '<p class="empty">Your bag is empty. Add a fruit to begin.</p>';
+    $('#carttotal').textContent = money(total);
+    $('#navcart').textContent = 'Bag (' + count + ')';
+  }
+  document.addEventListener('click', function(e){
+    var t = e.target.closest ? e.target.closest('button') : null;
+    if (!t) return;
+    var add = t.getAttribute('data-add'), inc = t.getAttribute('data-inc'), dec = t.getAttribute('data-dec'), cp = t.getAttribute('data-copy');
+    if (cp){ var o = t.textContent; var ok = function(){ t.textContent = 'Copied'; setTimeout(function(){ t.textContent = o; }, 1500); }; try { navigator.clipboard.writeText(cp).then(ok, function(){}); } catch (err) {} return; }
+    if (add){
+      var f = cart.filter(function(c){ return c.id === add; })[0];
+      if (f) f.qty++; else cart.push({id:add, qty:1});
+      $('#receipt').hidden = true; renderCart();
+      var m = $('#navcart'); m.textContent = m.textContent;
+    } else if (inc !== null){ cart[+inc].qty++; $('#receipt').hidden = true; renderCart(); }
+    else if (dec !== null){ var c = cart[+dec]; c.qty--; if (c.qty <= 0) cart.splice(+dec, 1); $('#receipt').hidden = true; renderCart(); }
+  });
+
+  function copyText(ta, btn){
+    var done = function(){ btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = 'Copy'; }, 1600); };
+    var fb = function(){ ta.focus(); ta.select(); };
+    try { navigator.clipboard.writeText(ta.value).then(done, fb); } catch (err) { fb(); }
+  }
+  $('#copyreceipt').addEventListener('click', function(){ copyText($('#receipttext'), this); });
+  $('#copymsg').addEventListener('click', function(){ copyText($('#mtext'), this); });
+  function wa(id, text){ $(id).href = 'https://wa.me/918893825944?text=' + encodeURIComponent(text); }
+
+  $('#placeorder').addEventListener('click', function(){
+    var name = $('#oname').value.trim(), phone = $('#ophone').value.trim(), addr = $('#oaddr').value.trim(), msg = $('#ordermsg');
+    if (!cart.length){ msg.textContent = 'Add at least one fruit to your bag.'; return; }
+    if (!name || !phone || !addr){ msg.textContent = 'Enter your name, phone and delivery address.'; return; }
+    var total = 0, lines = cart.map(function(c){
+      var p = BY[c.id], l = p.price * c.qty; total += l;
+      return c.qty + ' x ' + p.name + ' 50 g  ' + money(l);
+    });
+    var text = 'Crynora order\n\n' + lines.join('\n') + '\n\nTotal: ' + money(total) + '\n\nName: ' + name + '\nPhone: ' + phone + '\nAddress: ' + addr;
+    $('#receipttext').value = text; wa('#wa-order', text);
+    $('#receipt').hidden = false;
+    msg.textContent = 'Order summary ready. Send it to us on WhatsApp or copy it.';
+  });
+
+  $('#makemsg').addEventListener('click', function(){
+    var n = $('#cname').value.trim(), c = $('#cphone').value.trim(), m = $('#cmsg').value.trim(), s = $('#cmsgstatus');
+    if (!n || !c || !m){ s.textContent = 'Fill in your name, contact and message.'; return; }
+    var text = 'Message for Crynora\n\nFrom: ' + n + '\nContact: ' + c + '\n\n' + m;
+    $('#mtext').value = text; wa('#wa-msg', text);
+    $('#mreceipt').hidden = false;
+    s.textContent = 'Message ready. Send it on WhatsApp or copy it.';
+  });
+
+  var PAGES = ['home','products','technology','eat','shop','contact'];
+  function route(){
+    var h = (location.hash || '').replace('#', '');
+    if (PAGES.indexOf(h) < 0) h = 'home';
+    $$('[data-page]').forEach(function(s){ s.hidden = s.getAttribute('data-page') !== h; });
+    $$('[data-nav]').forEach(function(a){
+      if (a.getAttribute('data-nav') === h) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    $$('video').forEach(function(v){ try { v.pause(); } catch (e) {} });
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', route);
+  renderCart();
+  route();
+})();
+</script>
+
+</body>
+</html>
